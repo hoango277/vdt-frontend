@@ -1,0 +1,227 @@
+/* Header cho student pages - PRIORITY: HIGHEST */
+.page-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: white !important;
+  padding: 20px 30px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  margin: 10px auto 20px auto !important;
+  max-width: 900px !important;
+  border: 1px solid #e1e1e1 !important;
+  position: relative !important;
+  z-index: 1000 !important;
+  width: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.page-header h1 {
+  margin: 0 !important;
+  color: #333 !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+
+.logout-button {
+  background: #dc3545 !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.logout-button:hover {
+  background: #c82333 !important;
+  transform: translateY(-1px) !important;
+}
+
+.student-list-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 30px;
+  margin: 0 auto 20px auto;
+  max-width: 900px;
+  position: static;
+  z-index: 1;
+  clear: both;
+}
+
+.student-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.student-list-header h2 {
+  margin: 0;
+}
+
+.add-btn {
+  background: #667eea;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-btn:hover {
+  background: #5a67d8;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  position: static;
+  z-index: auto;
+}
+
+.student-table th, .student-table td {
+  border: 1px solid #eee;
+  padding: 10px 8px;
+  text-align: left;
+  position: static;
+}
+
+.student-table th {
+  background: #f4f6fb;
+  position: static;
+  z-index: auto;
+}
+
+.student-table tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.student-table button {
+  margin-right: 6px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.student-table .delete-btn {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.student-table .delete-btn:hover {
+  background: #c0392b;
+}
+
+.student-form-container, .student-detail-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 30px;
+  margin: 0 auto 20px auto;
+  max-width: 500px;
+  position: static;
+  z-index: 1;
+}
+
+.student-form h2, .student-detail-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.student-form .form-group {
+  margin-bottom: 18px;
+}
+
+.student-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #555;
+  font-weight: 500;
+}
+
+.student-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #e1e1e1;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.student-form input:focus {
+  border-color: #667eea;
+}
+
+.student-form .auth-button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.cancel-btn {
+  width: 100%;
+  margin-top: 10px;
+  background: #eee;
+  color: #333;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #ddd;
+}
+
+.edit-btn {
+  background: #f1c40f;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-btn:hover {
+  background: #e1b307;
+}
+
+.student-detail-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 4px solid #667eea;
+}
+
+.student-detail-card p {
+  margin: 8px 0;
+  color: #333;
+  font-size: 15px;
+}
+
+.error-message {
+  background: #fee;
+  color: #d63031;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #fab1a0;
+  font-size: 14px;
+  text-align: center;
+} 
