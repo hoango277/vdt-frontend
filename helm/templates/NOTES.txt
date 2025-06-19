@@ -1,0 +1,44 @@
+1. Ứng dụng VDT Frontend đã được deploy thành công!
+
+2. Để truy cập ứng dụng:
+
+{{- if .Values.ingress.enabled }}
+{{- range $host := .Values.ingress.hosts }}
+  {{- range .paths }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
+  {{- end }}
+{{- end }}
+{{- else if contains "NodePort" .Values.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "vdt-frontend.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+{{- else if contains "LoadBalancer" .Values.service.type }}
+     NOTE: Có thể mất vài phút để LoadBalancer IP có sẵn.
+           Bạn có thể xem trạng thái bằng lệnh: 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "vdt-frontend.fullname" . }}'
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "vdt-frontend.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+  echo http://$SERVICE_IP:{{ .Values.service.port }}
+{{- else if contains "ClusterIP" .Values.service.type }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "vdt-frontend.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace {{ .Release.Namespace }} $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Truy cập ứng dụng tại http://127.0.0.1:8080"
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:$CONTAINER_PORT
+{{- end }}
+
+3. Kiểm tra trạng thái deployment:
+   kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "vdt-frontend.name" . }},app.kubernetes.io/instance={{ .Release.Name }}"
+
+4. Xem logs của ứng dụng:
+   kubectl logs --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "vdt-frontend.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -f
+
+{{- if .Values.autoscaling.enabled }}
+5. Horizontal Pod Autoscaling đã được bật với cấu hình:
+   - Min replicas: {{ .Values.autoscaling.minReplicas }}
+   - Max replicas: {{ .Values.autoscaling.maxReplicas }}
+   - CPU target: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}%
+{{- end }}
+
+6. Để cập nhật ứng dụng:
+   helm upgrade {{ .Release.Name }} ./helm --namespace {{ .Release.Namespace }}
+
+7. Để xóa ứng dụng:
+   helm uninstall {{ .Release.Name }} --namespace {{ .Release.Namespace }} 
