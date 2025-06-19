@@ -9,4 +9,4 @@ spec:
       targetPort: {{ .Values.service.targetPort }}
       nodePort: {{ .Values.service.nodePort }}
   selector:
-    {{- include "vdt-frontend.selectorLabels" . }} 
+    {{- include "vdt-frontend.selectorLabels" . | nindent 4 }} 
