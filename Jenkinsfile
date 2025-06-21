@@ -94,7 +94,7 @@ spec:
                     """
                 }
             }
-        }
+        } 
         stage('Commit & Push to Config Repo') {
             steps {
                 dir('config') {
