@@ -8,5 +8,8 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
       nodePort: {{ .Values.service.nodePort }}
+    - port: 9113
+      targetPort: 9113
+      nodePort: 30005
   selector:
     {{- include "vdt-frontend.selectorLabels" . | nindent 4 }} 

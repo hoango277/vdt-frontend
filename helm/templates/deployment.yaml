@@ -60,6 +60,20 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           # (nginx config file is baked into the image; no extra mounts)
+        - name: nginx-prometheus-exporter
+          image: nginx/nginx-prometheus-exporter:latest
+          args:
+            - -nginx.scrape-uri=http://127.0.0.1:8080/metrics
+          ports:
+            - name: metrics
+              containerPort: 9113
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "10m"
+            limits:
+              memory: "128Mi"
+              cpu: "50m"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
